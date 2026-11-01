@@ -21,7 +21,10 @@ jobs:
                 cache: "npm"
 
             - name: "Install dependencies"
-              run: npm install
+              run: npm ci
+
+            - name: run ESlint 
+              run: npm run lint
             
             - name: make react build
               run: npm run build
