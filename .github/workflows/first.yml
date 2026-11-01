@@ -1,8 +1,7 @@
 name: "first workflow"
 on: 
     push:
-        branches: [ main, dev, qa ]
-    pull_request:
+    pull_request: # ← no filter = ALL branches
         branches: 
             - main
             - dev

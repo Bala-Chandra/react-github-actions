@@ -1,0 +1,33 @@
+name: "first workflow"
+on: 
+    push: 
+     branches:  # only these branches
+            - main
+            - dev
+            - qa
+    pull_request: 
+        branches: 
+            - main
+            - dev
+            - qa
+jobs:
+    first-job:
+        runs-on: ubuntu-latest
+        steps:
+            - name: "Checkout"
+              uses: actions/checkout@v4
+              
+            - name: "Setup Node.js"
+              uses: actions/setup-node@v4
+              with:
+                node-version: 24
+                cache: "npm"
+
+            - name: "Install dependencies"
+              run: npm ci
+
+            - name: run ESlint 
+              run: npm run lint
+            
+            - name: make react build
+              run: npm run build
