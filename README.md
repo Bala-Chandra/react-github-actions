@@ -1,19 +1,40 @@
 # React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# For Vitest Setup:
 
-Currently, two official plugins are available:
+`npm install -D vitest jsdom @testing-library/react @testing-library/dom @testing-library/jest-dom @testing-library/user-event`
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
 
-## React Compiler
+# Configure Vite & Setup File:
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+You can add the test configuration directly into your existing vite.config.ts (or vite.config.js). If you don't have one, create it at the root.
 
-## Expanding the ESLint configuration
+# typescript
+#  vite.config.ts
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+export default defineConfig({
+  plugins: [react()],
+  test: {
+    globals: true, // Allows using describe/it/expect without imports
+    environment: 'jsdom', // Simulates the browser DOM
+    setupFiles: './src/setupTests.ts', // Path to your setup file
+  },
+})
 
-update fro PR
-update for Pr again
+# package.json:
+
+json
+{
+  "scripts": {
+    "test": "vitest",
+    "test:ui": "vitest --ui",
+    "coverage": "vitest run --coverage"
+  }
+}
+
+
+
+#  src/setupTests.ts
+import '@testing-library/jest-dom/vitest';
