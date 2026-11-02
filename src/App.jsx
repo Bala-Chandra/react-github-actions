@@ -5,7 +5,7 @@ function App() {
 
   return (
     <>
-      <div>Code changed to push to branch</div>
+      <h1>My First Vercel Deployment</h1>
       <p> React Github actions</p>
     </>
   )
