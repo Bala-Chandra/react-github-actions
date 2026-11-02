@@ -14,7 +14,7 @@ describe('App Component', () => {
   it('renders the main div text', () => {
     render(<App />);
     expect(
-      screen.getByText(/code changed to push to branch/i)
+      screen.getByText(/My First Vercel Deployment/i)
     ).toBeInTheDocument();
   });
 
@@ -34,7 +34,7 @@ describe('App Component', () => {
 
   it('renders the div and paragraph inside a fragment (siblings, not nested)', () => {
     render(<App />);
-    const divText = screen.getByText(/code changed to push to branch/i);
+    const divText = screen.getByText(/My First Vercel Deployment/i);
     const pText = screen.getByText(/react github actions/i);
 
     // The <p> should NOT be a descendant of the text div
