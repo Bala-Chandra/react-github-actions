@@ -42,7 +42,8 @@ jobs:
             - name: run test cases
               run: npm run test
 
-    build-job:   
+    build-job: 
+        needs: [lint-job, test-job]
         runs-on: ubuntu-latest
         steps:
             - name: "Checkout"
