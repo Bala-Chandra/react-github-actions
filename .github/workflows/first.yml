@@ -7,7 +7,7 @@ on:
             - dev
             - qa
 jobs:
-    first-job:
+    lint-job:
         runs-on: ubuntu-latest
         steps:
             - name: "Checkout"
@@ -24,9 +24,38 @@ jobs:
 
             - name: run ESlint 
               run: npm run lint
+    test-job:
+        runs-on: ubuntu-latest
+        steps:
+            - name: "Checkout"
+              uses: actions/checkout@v4
+              
+            - name: "Setup Node.js"
+              uses: actions/setup-node@v4
+              with:
+                node-version: 24
+                cache: "npm"
+
+            - name: "Install dependencies"
+              run: npm ci
 
             - name: run test cases
               run: npm run test
+
+    build-job:   
+        runs-on: ubuntu-latest
+        steps:
+            - name: "Checkout"
+              uses: actions/checkout@v4
+              
+            - name: "Setup Node.js"
+              uses: actions/setup-node@v4
+              with:
+                node-version: 24
+                cache: "npm"
+
+            - name: "Install dependencies"
+              run: npm ci
             
             - name: make react build
               run: npm run build
